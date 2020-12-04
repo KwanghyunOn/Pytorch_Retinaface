@@ -84,6 +84,8 @@ if __name__ == '__main__':
     fw = open(os.path.join(args.save_folder, args.dataset + '_dets.txt'), 'w')
 
     resize = 1
+    _t = {'forward_pass': Timer(), 'misc': Timer()}
+
     image_path = "zoom.jpeg"
     img_raw = cv2.imread(image_path, cv2.IMREAD_COLOR)
 
@@ -96,7 +98,6 @@ if __name__ == '__main__':
     img = img.to(device)
     scale = scale.to(device)
 
-    _t = {'forward_pass': Timer(), 'misc': Timer()}
     _t['forward_pass'].tic()
     loc, conf, landms = net(img)  # forward pass
     _t['forward_pass'].toc()
