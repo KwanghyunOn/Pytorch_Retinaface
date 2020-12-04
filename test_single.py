@@ -83,12 +83,15 @@ if __name__ == '__main__':
         os.makedirs(args.save_folder)
     fw = open(os.path.join(args.save_folder, args.dataset + '_dets.txt'), 'w')
 
+    if not os.path.exists("./results/"):
+        os.makedirs("./results/")
+    result_path = "./results/single_person_result.jpg"
+    image_path = "./test_images/single_person.jpeg"
+
     resize = 1
     _t = {'forward_pass': Timer(), 'misc': Timer()}
 
-    image_path = "zoom.jpeg"
     img_raw = cv2.imread(image_path, cv2.IMREAD_COLOR)
-
     img = np.float32(img_raw)
     im_height, im_width, _ = img.shape
     scale = torch.Tensor([img.shape[1], img.shape[0], img.shape[1], img.shape[0]])
@@ -165,7 +168,4 @@ if __name__ == '__main__':
             cv2.circle(img_raw, (b[11], b[12]), 1, (0, 255, 0), 4)
             cv2.circle(img_raw, (b[13], b[14]), 1, (255, 0, 0), 4)
         # save image
-        if not os.path.exists("./results/"):
-            os.makedirs("./results/")
-        name = "./results/zoom_result.jpg"
-        cv2.imwrite(name, img_raw)
+        cv2.imwrite(result_path, img_raw)
