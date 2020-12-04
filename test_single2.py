@@ -96,10 +96,10 @@ if __name__ == '__main__':
 
     if not os.path.exists("./results/"):
         os.makedirs("./results/")
-    result_path = "./results/zoom_result2.jpeg"
+    result_path = "./results/single_person2.jpeg"
 
     # eval start
-    image_path = "./test_images/zoom.jpeg"
+    image_path = "./test_images/single_person.jpeg"
     img_raw = cv2.imread(image_path, cv2.IMREAD_COLOR)
     img = np.float32(img_raw)
 
